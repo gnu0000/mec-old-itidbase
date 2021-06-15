@@ -1,0 +1,71 @@
+#+--------------------------------------------------------------------------+
+#|                                                                          |
+#|       Copyright (c) 1992 by Info Tech, Inc.  All Rights Reserved.        |
+#|                                                                          |
+#|       This program module is part of DS/Shell (PC), Info Tech's          |
+#|       database interfaces for OS/2, a proprietary product of             |
+#|       Info Tech, Inc., no part of which may be reproduced or             |
+#|       transmitted in any form or by any means, electronic,               |
+#|       mechanical, or otherwise, including photocopying and recording     |
+#|       or in connection with any information storage or retrieval         |
+#|       system, without permission in writing from Info Tech, Inc.         |
+#|                                                                          |
+#+--------------------------------------------------------------------------+
+
+
+~ premake file for ITI data base functions.
+
+TARGET=itidbase
+TARGETDIR=..\itidbase^\
+!include "..\makeopts"
+
+:FileList SourceFiles =
+   {
+   buflist,  dbbuf,   dbkernel,
+   dbqry,    dbqueue, dbutil,
+   dbase,    dbparse, qbutton,
+   initdll,  dbbcp,   calc,
+   update
+   }
+
+:FileList OtherObj =
+   {
+   ..\lib\itidllc
+   }
+
+:FileList LibFiles =
+   {
+   iticrt,   itibase, itimbase,
+   itiglob,  colid,   itiutil,
+   itifmt,   itierror, itiglob
+   }
+
+
+all: $(LIBDIR)$(TARGET).lib $(EXEDIR)$(TARGET).dll
+
+
+$(LIBDIR)$(TARGET).lib: $(TARGET).def
+   implib -nologo $*.lib $?
+
+:Expand SourceFiles,{"cl $(CDLLFLAGS) $(CDEBUG) $(TARGETDIR)$*.c"},,obj,,c,INCLUDES
+
+
+$(TARGET).res : $(TARGET).rc qbutton.dlg askdb.dlg dialog.h
+   rc -r $(DEBUG) $*.rc
+
+
+$(EXEDIR)$(TARGET).dll: {F: SourceFiles,,obj} {F: OtherObj,$(LIBDIR),obj} {F: LibFiles,$(LIBDIR),lib} $(TARGET).pre $(TARGET).def $(TARGET).res
+   link @<<tmp.lnk
+      {F: SourceFiles,,}$(LFLAGS) $(LDEBUG)/Li/NOI/NOD/M +
+      {F: OtherObj,,} crtdll_i
+      $(EXEDIR)$(TARGET).dll
+      itidbase.map
+      {F: LibFiles,,} os2 pdblib
+      $(TARGET).def
+<<NOKEEP
+   rc $(TARGET).res $*.dll
+   mapsym /l itidbase.map
+   copy *.sym $(EXEDIR)
+
+
+

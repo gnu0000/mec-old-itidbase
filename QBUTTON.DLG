@@ -1,0 +1,40 @@
+/*--------------------------------------------------------------------------+
+|                                                                           |
+|       Copyright (c) 1992 by Info Tech, Inc.  All Rights Reserved.         |
+|                                                                           |
+|       This program module is part of DS/Shell (PC), Info Tech's           |
+|       database interfaces for OS/2, a proprietary product of              |
+|       Info Tech, Inc., no part of which may be reproduced or              |
+|       transmitted in any form or by any means, electronic,                |
+|       mechanical, or otherwise, including photocopying and recording      |
+|       or in connection with any information storage or retrieval          |
+|       system, without permission in writing from Info Tech, Inc.          |
+|                                                                           |
++--------------------------------------------------------------------------*/
+
+
+DLGTEMPLATE 1000 LOADONCALL MOVEABLE DISCARDABLE 
+BEGIN
+    DIALOG "Text", 1000, 15, 16, 372, 183, FS_NOBYTEALIGN | FS_DLGBORDER | 
+                WS_VISIBLE | WS_CLIPSIBLINGS | WS_SAVEBITS, FCF_SYSMENU | 
+                FCF_TITLEBAR | FCF_NOBYTEALIGN
+    BEGIN
+        CONTROL "Text", 103, 7, 6, 304, 78, WC_MLE, MLS_BORDER | MLS_WORDWRAP | 
+                MLS_VSCROLL | WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL "Query", 100, 11, 86, 184, 8, WC_STATIC, SS_TEXT | DT_LEFT | 
+                DT_VCENTER | WS_GROUP | WS_VISIBLE
+        CONTROL "", 102, 165, 98, 202, 72, WC_LISTBOX, LS_HORZSCROLL | 
+                WS_TABSTOP | WS_VISIBLE
+        CONTROL "Column Names (id)", 100, 167, 172, 92, 8, WC_STATIC, SS_TEXT | 
+                DT_LEFT | DT_VCENTER | WS_GROUP | WS_VISIBLE
+        CONTROL "OK", 1, 322, 67, 38, 14, WC_BUTTON, BS_PUSHBUTTON | WS_TABSTOP | 
+                WS_VISIBLE
+        CONTROL "", 101, 11, 98, 146, 72, WC_LISTBOX, LS_HORZSCROLL | WS_TABSTOP | 
+                WS_VISIBLE
+        CONTROL "Buffer stuff", 100, 13, 172, 92, 8, WC_STATIC, SS_TEXT | 
+                DT_LEFT | DT_VCENTER | WS_GROUP | WS_VISIBLE
+        CONTROL "Cancel", 2, 322, 45, 38, 13, WC_BUTTON, BS_PUSHBUTTON | 
+                WS_TABSTOP | WS_VISIBLE
+    END
+END
+

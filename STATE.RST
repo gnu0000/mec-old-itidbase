@@ -1,0 +1,14 @@
+[edit-]
+screen=80 25
+toggles=1 1 0 1 0 0
+srch=DbBufferHasTable
+src=
+rpl=
+file=d:\CES\SOURCE\ITIDBASE\BUFLIST.C 1 331 30 345
+[brief]
+file=d:\CES\SOURCE\ITIDBASE\BUFLIST.C 1 331 30 345 1 22 78 1 c=0
+file=d:\CES\SOURCE\ITIDBASE\INITDLL.H 1 42 27 45
+file=d:\CES\SOURCE\ITIDBASE\INITDLL.C 1 54 1 1
+[shared-]
+mark=edit d:\CES\SOURCE\ITIDBASE\BUFLIST.C 1 336 bnumber=1
+pmark=d:\CES\SOURCE\ITIDBASE\BUFLIST.C 30 345

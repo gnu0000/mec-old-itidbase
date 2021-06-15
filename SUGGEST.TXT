@@ -1,0 +1,79 @@
+
+
+Suggestions for The New BAMS Database API (database primitives)
+
+
+I am writing this document to suggest a design approach for the 
+new BAMS database API to be created for the batch re-write.  I
+feel I am qualified to make these suggestion simply because I
+am the poor shmuck that designed and implemented the CES database
+module/API.  For those of you who aren't familiar with CES, it is
+a BAMS module that uses Microsoft SQL Server using call level API
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Having designed and coded the Database module for CES, I have learned 
+several things 
+
+
+
+
+
+
+
+Database API
+
+        Use a layered approach & minimize exposure to external DB routines
+
+
+        DbInit ........... Module init
+        DbTerm ........... Module term
+        DbLogin .......... User login
+        DbLogout ......... User logout
+        DbExecQuery ...... execs an SQL string - Query, update, etc...
+        DbGetRow ......... if Exec was a query this gets the rows
+        DbTermQuery ...... This terminates the open cursor
+        DbResults ........ Query metatada - error status, etc ...
+        DbGetColData ..... Query metatada - col sizes and types, ...
+
+
+        DbGetCell ........ 
+        DbExecToBuff .....
+        DbNumRows ........
+
+
+        Make it simple
+
+
+
+
+        Use handles
+
+
+
+
+
+
+C suggestions
+        Use Name Prefix for API
+        No Globals
+        Hungarian notation
+        User Types
+        Standard ITI C conventions
+
+
